@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-03
+
+### Added
+
+- Enable the Cachix binary cache: uncomment `nixConfig` with the real
+  `qahq.cachix.org` public key now that `CACHIX_AUTH_TOKEN` is wired in CI.
+  Verified end-to-end (a forced clean rebuild pushed every tool with no auth
+  errors, and the pushed narinfos are independently fetchable).
+- `Justfile` (`check`/`build`/`run` wrapping the nix commands) and `just` in
+  `devShells.default`.
+
 ## [0.1.0] - 2026-07-03
 
 ### Added
@@ -21,5 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI builds the whole stack and pushes to a Cachix binary cache (skipped until
   `CACHIX_AUTH_TOKEN` is set).
 
-[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/mlavrinenko/qahq/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mlavrinenko/qahq/releases/tag/v0.1.0
