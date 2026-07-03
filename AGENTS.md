@@ -9,6 +9,7 @@ projects. It is a Nix flake, not a Rust crate — no Cargo, no `src/`.
 - `pkgs/<tool>.nix` — one portable `callPackage` derivation per vendored
   third-party tool. Keep these nixpkgs-style so they stay upstream-ready.
 - `.github/workflows/ci.yml` — `nix flake check` + build all + Cachix push.
+- `Justfile` — see and use it. Add any repeatable and regular operations there.
 
 ## Rules
 
@@ -25,9 +26,9 @@ projects. It is a Nix flake, not a Rust crate — no Cargo, no `src/`.
 ## Validate
 
 ```sh
-nix flake check          # evaluates + builds every tool, the bundle, devShell
-nix build .#<tool>       # one tool
-nix run .#<tool> -- ...  # smoke-test a binary
+just check             # evaluates + builds every tool, the bundle, devShell
+just build <tool>      # one tool (defaults to the bundle)
+just run <tool> -- ... # smoke-test a binary
 ```
 
 ## Commits

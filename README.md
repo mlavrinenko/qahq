@@ -1,9 +1,8 @@
 # qahq
 
-Quality-assurance headquarters. One flake that packages the lint/QA CLI tools
-shared across the Rust projects here, so each project wires a single input
-instead of copy-pasting `fetchCrate`/`naersk` blocks and juggling four or five
-tool inputs.
+Quality-assurance headquarters. One flake that packages the lint/QA CLI tools,
+so each project wires a single input instead of copy-pasting `fetchCrate`/`naersk`
+blocks and juggling four or five tool inputs.
 
 ## Tools
 
@@ -68,26 +67,6 @@ second nixpkgs evaluation; the payoff is prebuilt binaries.
 
 CI pushes every built tool to `https://qahq.cachix.org`, so consumers download
 binaries instead of compiling Rust from source.
-
-One-time setup (owner only):
-
-1. Create the cache: `cachix create qahq` (or via the cachix.org web UI). This
-   prints the public key `qahq.cachix.org-1:...`.
-2. Add the auth token as a repo secret: Settings → Secrets and variables →
-   Actions → `CACHIX_AUTH_TOKEN` (value from `cachix authtoken`). The CI Cachix
-   step is skipped until this exists, then starts pushing automatically.
-3. Paste the printed public key into the `nixConfig` block in `flake.nix`
-   (currently commented) and into the snippet below, and commit.
-
-Consumers then get the cache automatically from the flake's `nixConfig`, or add
-it manually:
-
-```nix
-nixConfig = {
-  extra-substituters = [ "https://qahq.cachix.org" ];
-  extra-trusted-public-keys = [ "qahq.cachix.org-1:REPLACE_WITH_KEY_FROM_cachix_create" ];
-};
-```
 
 ## Maintenance
 

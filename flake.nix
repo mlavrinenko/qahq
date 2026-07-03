@@ -3,14 +3,12 @@
 
   # Binary cache. Consumers that do NOT override qahq's nixpkgs pin pull prebuilt
   # binaries instead of compiling cargo-crap/jscpd (and the first-party tools)
-  # from source. ONE-TIME SETUP (see README "Binary cache"): after
-  # `cachix create qahq` and wiring CACHIX_AUTH_TOKEN in CI, uncomment the block
-  # below and paste the public key that `cachix` printed.
-  #
-  # nixConfig = {
-  #   extra-substituters = [ "https://qahq.cachix.org" ];
-  #   extra-trusted-public-keys = [ "qahq.cachix.org-1:REPLACE_WITH_KEY_FROM_cachix_create" ];
-  # };
+  # from source.
+
+  nixConfig = {
+    extra-substituters = [ "https://qahq.cachix.org" ];
+    extra-trusted-public-keys = [ "qahq.cachix.org-1:m43yxxOk1vih9jTZmKXZXgHSSKsW/rNVZUqgXqrELM8=" ];
+  };
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -85,7 +83,7 @@
 
         # `nix develop` here drops the whole stack on PATH.
         devShells.default = pkgs.mkShell {
-          nativeBuildInputs = builtins.attrValues tools;
+          nativeBuildInputs = builtins.attrValues tools ++ [ pkgs.just ];
         };
       }
     )
