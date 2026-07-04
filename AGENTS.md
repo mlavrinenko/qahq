@@ -15,9 +15,10 @@ projects. It is a Nix flake, not a Rust crate — no Cargo, no `src/`.
 
 - Nix flake commands only see git-tracked files. `git add` new `pkgs/*.nix`
   before `nix build`/`nix flake check`, or they are invisible.
-- Keep third-party derivations in `pkgs/` (vendored crates.io tools). Re-export
-  first-party tools from their own flakes in `firstParty` — never re-vendor a
-  tool that already has a flake.
+- Never re-vendor a tool that already ships a flake. Consume it as an input
+  (with `inputs.nixpkgs.follows = "nixpkgs"`) and list it in `flakeTools`,
+  regardless of who authored it. Only crates.io tools with no upstream flake
+  get a vendored `pkgs/<tool>.nix`.
 - Do not pin `RUSTC_WRAPPER`/sccache here. Host `kache` handles caching and
   never reaches the build sandbox.
 - Every tool must land in the `tools` set so it flows into `default`, the

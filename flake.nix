@@ -18,9 +18,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # First-party QA tools, re-exported so a consumer wires only this one input
-    # and gets the whole stack pinned together. Each follows qahq's nixpkgs so
-    # everything builds against one revision and the cache stays consistent.
+    # QA tools re-exported from their own flakes, so a consumer wires only this
+    # one input and gets the whole stack pinned together. Each follows qahq's
+    # nixpkgs so everything builds against one revision and the cache stays
+    # consistent.
+    jscpd = {
+      url = "github:kucherenko/jscpd/v5.0.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ejectest = {
       url = "github:mlavrinenko/ejectest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -45,6 +50,7 @@
       nixpkgs,
       flake-utils,
       naersk,
+      jscpd,
       ejectest,
       linecop,
       outdatty,
@@ -56,19 +62,20 @@
         pkgs = (import nixpkgs) { inherit system; };
         naersk' = pkgs.callPackage naersk { };
 
-        # Third-party crates with no upstream flake, vendored from crates.io.
+        # Crate with no upstream flake, vendored from crates.io.
         cargo-crap = pkgs.callPackage ./pkgs/cargo-crap.nix { };
-        jscpd = pkgs.callPackage ./pkgs/jscpd.nix { naersk = naersk'; };
 
-        # First-party tools, pulled from their own flakes.
-        firstParty = {
+        # Tools consumed from their own flakes. Each follows qahq's nixpkgs
+        # (see inputs) so the whole closure stays on one revision.
+        flakeTools = {
+          jscpd = jscpd.packages.${system}.default;
           ejectest = ejectest.packages.${system}.default;
           linecop = linecop.packages.${system}.default;
           outdatty = outdatty.packages.${system}.default;
           mmz = mmz.packages.${system}.default;
         };
 
-        tools = { inherit cargo-crap jscpd; } // firstParty;
+        tools = { inherit cargo-crap; } // flakeTools;
       in
       {
         # Every tool individually (`nix build .#jscpd`, `nix run .#cargo-crap`)
