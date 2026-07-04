@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-05
+
+### Changed
+
+- `jscpd` no longer vendored via `naersk` `singleStep` from the crates.io
+  publish. It now ships its own flake (`crane` + `fenix`, `nixpkgs.follows`
+  wired clean); qahq consumes it as an input pinned to `v5.0.11` instead.
+  Verified: `nix flake check` green, `default` bundle carries the binary,
+  clone detection confirmed on a real tree.
+- Collapsed the first-party/third-party tool split into one `flakeTools`
+  set — every tool consumed from its own flake belongs there regardless of
+  authorship. `cargo-crap` stays vendored in `pkgs/` (no upstream flake).
+
 ## [0.2.0] - 2026-07-03
 
 ### Added
@@ -32,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI builds the whole stack and pushes to a Cachix binary cache (skipped until
   `CACHIX_AUTH_TOKEN` is set).
 
-[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/mlavrinenko/qahq/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mlavrinenko/qahq/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mlavrinenko/qahq/releases/tag/v0.1.0
