@@ -4,9 +4,10 @@ set quiet := true
 default:
     @just --list
 
-# Evaluate and build every tool, the bundle, and the devShell
+# Evaluate flake outputs and compile every tool (the same sequence CI runs)
 check:
     nix flake check --print-build-logs
+    nix build .#default --print-build-logs
 
 # Build one tool (defaults to the bundle)
 build TOOL='default':
