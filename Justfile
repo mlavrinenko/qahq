@@ -19,11 +19,11 @@ run TOOL *ARGS:
 
 # Bump the first-party tool inputs, check, and commit flake.lock
 bump: && (_commit-lock "chore: bump tool inputs")
-    nix flake update ejectest linecop outdatty mmz
+    nix flake update --tarball-ttl 0 ejectest linecop outdatty mmz
 
 # Bump every input (nixpkgs, naersk, ...), check, and commit flake.lock
 bump-all: && (_commit-lock "chore: bump flake inputs")
-    nix flake update
+    nix flake update --tarball-ttl 0
 
 [private]
 _commit-lock MESSAGE:
