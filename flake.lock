@@ -2427,11 +2427,11 @@
         "qahq": "qahq"
       },
       "locked": {
-        "lastModified": 1784888223,
-        "narHash": "sha256-rIkSJdqnVK2WjFiCJnDfgc1+dGirVEa+qIghaFyZELs=",
+        "lastModified": 1784908779,
+        "narHash": "sha256-eL8WTCzzQ4/X7i+ZK6fWPthSIKtrhPCUCjZXAja6XDA=",
         "owner": "mlavrinenko",
         "repo": "mmz",
-        "rev": "7253e16a62b4fd7d2392b2de0d3b69ba6d9f2de5",
+        "rev": "4945ca4c3104ca56532ce05ba3052d990e1df420",
         "type": "github"
       },
       "original": {
