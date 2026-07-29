@@ -15,3 +15,17 @@ build TOOL='default':
 # Smoke-test a tool binary
 run TOOL *ARGS:
     nix run .#{{ TOOL }} -- {{ ARGS }}
+
+# Bump the first-party tool inputs, check, and commit flake.lock
+bump: && (_commit-lock "chore: bump tool inputs")
+    nix flake update ejectest linecop outdatty mmz
+
+# Bump every input (nixpkgs, naersk, ...), check, and commit flake.lock
+bump-all: && (_commit-lock "chore: bump flake inputs")
+    nix flake update
+
+[private]
+_commit-lock MESSAGE:
+    just check
+    git add flake.lock
+    git diff --cached --quiet flake.lock && echo "flake.lock already up to date" || git commit -m "{{ MESSAGE }}"
