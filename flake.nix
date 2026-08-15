@@ -23,7 +23,7 @@
     # nixpkgs so everything builds against one revision and the cache stays
     # consistent.
     jscpd = {
-      url = "github:kucherenko/jscpd/v5.0.11";
+      url = "github:kucherenko/jscpd/v5.0.15";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ejectest = {
