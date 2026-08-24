@@ -7,6 +7,38 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.4.0] - 2026-08-24
+
+### Changed
+
+- First-party tools re-pinned from their own flakes (tool bumps below verified
+  via `nix run .#<tool> -- --version`; the `default` bundle and devShell now
+  carry the new binaries).
+- `check` builds the full tool bundle (`.#default`) after flake evaluation, so
+  CI catches a broken aggregation, not just per-tool builds.
+- New `changelog` recipe: `just changelog` diffs `flake.lock` between the last
+  release tag and the working tree and prints first-party tool-bump bullets. It
+  reads the revisions via `.nodes.root.inputs.<tool>` — flake.lock dedupes
+  shared nodes, so an input name is not necessarily its node name.
+
+### Added
+
+- `just bump` / `just bump-all` recipes that refresh inputs and commit the
+  renewed `flake.lock`.
+
+### Fixed
+
+- `bump` passes `--tarball-ttl 0` so a stale nix cache entry cannot pin a tool
+  to an old revision.
+
+### Updated
+
+- `mmz` v0.3.0 → v0.10.0 (rev `1b4593cf`).
+- `linecop` v0.3.0 → v0.4.0.
+- `outdatty` v0.3.0 → v0.4.0.
+- `ejectest` → latest main (rev `564aac9`).
+- `jscpd` pin advanced to `v5.0.15`.
+
 ## [0.3.0] - 2026-07-05
 
 ### Changed
@@ -45,7 +77,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI builds the whole stack and pushes to a Cachix binary cache (skipped until
   `CACHIX_AUTH_TOKEN` is set).
 
-[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/mlavrinenko/qahq/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mlavrinenko/qahq/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mlavrinenko/qahq/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/mlavrinenko/qahq/releases/tag/v0.1.0
