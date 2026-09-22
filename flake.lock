@@ -5007,11 +5007,11 @@
         "qahq": "qahq_3"
       },
       "locked": {
-        "lastModified": 1783183265,
-        "narHash": "sha256-A5UaNUTq53gxhpNfmiMbqe3EKQU5I45xoBywC6V9FG8=",
+        "lastModified": 1790110082,
+        "narHash": "sha256-9tYjJTbfMEKMQ6oib1oyobrp6uc0fxaNhepRaBYVxnc=",
         "owner": "mlavrinenko",
         "repo": "outdatty",
-        "rev": "f3bca2964ee5fe1f4f859327b47aa075e07ed131",
+        "rev": "fc68216c4a4774cf0322fab5925b91cba74c2f95",
         "type": "github"
       },
       "original": {
