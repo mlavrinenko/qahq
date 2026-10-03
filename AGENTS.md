@@ -42,4 +42,4 @@ releases only. `jscpd` is URL-pinned (`/v5.0.11`) — bump it by editing
 
 Conventional Commits, matching the sibling repos (`mmz`, `linecop`, …). No
 `Refs:` footer — the family does not use one. Release commit bumps the tag.
-Author `Lavrinenko Maxim <maxim@lavrinenko.xyz>`.
+Author `Maxim Lavrinenko <maxim@lavrinenko.xyz>`.
