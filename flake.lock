@@ -3369,11 +3369,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1786797320,
-        "narHash": "sha256-8LXKCv/k8a0j69NuwUrxEoVJFRtibE3DHmt0fOcPFXM=",
+        "lastModified": 1791030737,
+        "narHash": "sha256-RDAl/59cdf1mwtNL1wVojrxpULtOvIGH2EnFxMzfb4k=",
         "owner": "mlavrinenko",
         "repo": "linecop",
-        "rev": "15acbbc1bfc24f5c595b9c995645c3f07391ba87",
+        "rev": "591b37b1666566702cd9cfbca2bfd66a77991c52",
         "type": "github"
       },
       "original": {
