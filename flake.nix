@@ -22,8 +22,15 @@
     # one input and gets the whole stack pinned together. Each follows qahq's
     # nixpkgs so everything builds against one revision and the cache stays
     # consistent.
+    # v5.0.15 plus the stdenv.hostPlatform fix, until it lands upstream. A
+    # current fenix, as upstream's pin uses the deprecated stdenv.isLinux.
     jscpd = {
-      url = "github:kucherenko/jscpd/v5.0.15";
+      url = "github:mlavrinenko/jscpd/v5.0.15-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.fenix.follows = "fenix";
+    };
+    fenix = {
+      url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ejectest = {
@@ -55,6 +62,7 @@
       linecop,
       outdatty,
       mmz,
+      ...
     }:
     flake-utils.lib.eachDefaultSystem (
       system:

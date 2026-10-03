@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Evaluating `jscpd` no longer warns that `stdenv.isDarwin` and
+  `stdenv.isLinux` are deprecated: it comes from a fork carrying the one-line
+  upstream fix, and follows a current `fenix`.
+
 ## [0.5.0] - 2026-10-03
 
 ### Updated
