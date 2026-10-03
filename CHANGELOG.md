@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2026-10-03
+
+### Updated
+
+- `linecop` v0.4.0 → v0.7.0. Breaking for configs: override patterns are now
+  `.gitignore` lines read from the config file's directory, so `*` no longer
+  crosses `/` and a pattern without a slash matches at any depth; `**/` and
+  `./` workarounds still work. The config is found up to the repository root,
+  so running inside a subdirectory uses the repo's config. Operational errors
+  exit 2, violations 1. Overrides take `max_bytes`.
+- `outdatty` v0.4.0 → v0.5.0.
+
 ## [0.4.0] - 2026-08-24
 
 ### Changed
@@ -77,7 +89,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI builds the whole stack and pushes to a Cachix binary cache (skipped until
   `CACHIX_AUTH_TOKEN` is set).
 
-[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/mlavrinenko/qahq/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/mlavrinenko/qahq/compare/v0.4.0...v0.5.0
 [0.4.0]: https://github.com/mlavrinenko/qahq/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/mlavrinenko/qahq/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/mlavrinenko/qahq/compare/v0.1.0...v0.2.0
