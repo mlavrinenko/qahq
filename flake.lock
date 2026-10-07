@@ -25,11 +25,11 @@
         "qahq": "qahq"
       },
       "locked": {
-        "lastModified": 1783109859,
-        "narHash": "sha256-YPHv0iT3NGEiC6vMTSOnUYeHS/bxkt5aj8pzNiDfHsc=",
+        "lastModified": 1791373234,
+        "narHash": "sha256-Qs+39F9L1S7tib/jR3IZrPBe+dyUeb1Ip+Wa72JtnrM=",
         "owner": "mlavrinenko",
         "repo": "ejectest",
-        "rev": "564aac94a1351825d4bfc2036cb66933a06123bd",
+        "rev": "86e68f75a19af0623e0ab89d7b9af7fa3ef27584",
         "type": "github"
       },
       "original": {
