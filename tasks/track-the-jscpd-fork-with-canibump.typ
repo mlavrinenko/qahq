@@ -21,7 +21,7 @@ Nothing tells us when the fork can go, so it stays until someone remembers to lo
 ```toml
 [[blocker]]
 id = "jscpd-fork"
-note = "flake.nix: point jscpd back at github:kucherenko/jscpd and drop the fork"
+note = "flake.nix: point jscpd back at github:kucherenko/jscpd and drop the fork, once `nix build github:kucherenko/jscpd/<tag>` succeeds"
 
 # The fix is merged...
 [[blocker.all]]
@@ -35,5 +35,5 @@ reached = "github:kucherenko/jscpd#1133"
 in = { tags = "v*" }
 ```
 
-- `canibump --refresh` reports the entry. It already says `bumpable` because of v5.4.1, which does not build: canibump cannot check "builds". Its `note` says to run `nix build github:kucherenko/jscpd/<tag>` before bumping; with a tag that builds, switch the input, run `just check`, and drop the fork.
+- `canibump --refresh` reports the entry. It already says `bumpable` because of v5.4.1, which does not build: canibump cannot check "builds". Hence the `note`: with a tag that builds, switch the input, run `just check`, and drop the fork.
 - A `just canibump` recipe runs it, as in ~/.nix.
