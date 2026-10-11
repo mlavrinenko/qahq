@@ -16,7 +16,7 @@ Nothing tells us when the fork can go, so it stays until someone remembers to lo
 
 == Done when
 
-- `canibump.toml` at the repo root, with `#:schema file:///home/tank/.config/canibump/canibump.schema.json` on its first line (canibump: ~/projects/home/canibump, `just install`), holds this entry:
+- `canibump.toml` at the repo root, with `#:schema https://raw.githubusercontent.com/mlavrinenko/canibump/main/schema/canibump.schema.json` on its first line (canibump comes from this flake's dev shell), holds this entry:
 
 ```toml
 [[blocker]]
@@ -36,4 +36,4 @@ in = { tags = "v*" }
 ```
 
 - `canibump --refresh` reports the entry. It already says `bumpable` because of v5.4.1, which does not build: canibump cannot check "builds". Hence the `note`: with a tag that builds, switch the input, run `just check`, and drop the fork.
-- A `just canibump` recipe runs it, as in ~/.nix.
+- A `just canibump` recipe runs it.
