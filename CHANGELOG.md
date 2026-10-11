@@ -17,6 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - `flake.nix` splits tools into `firstParty` and `thirdParty`. The first-party
   names are exported as `lib.firstParty`, and `just bump` and
   `just changelog` read them from there.
+- The first-party inputs' own `qahq` input follows this flake, which takes
+  `flake.lock` from 672 nodes down to 45.
+- `nix flake check` (so `just check` and CI) lints the Nix with deadnix,
+  statix and nixfmt. Every input is named in `outputs`, so one nothing uses
+  fails the gate.
+
+### Removed
+
+- The unused `naersk` input, and the root `fenix` input. jscpd's `fenix` is
+  now overridden in place.
 
 ## [0.6.0] - 2026-10-11
 

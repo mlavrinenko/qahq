@@ -84,8 +84,13 @@ Bump a version: change `version` + `hash` (and `cargoHash` for `rustPlatform`),
 set the hash to `""` or `lib.fakeHash` first, rebuild, and copy the real hash
 from the mismatch error.
 
-Re-export a new first-party tool: add its flake input (with
-`inputs.nixpkgs.follows = "nixpkgs"`) and one line in `firstParty`.
+Re-export a new first-party tool. Add its flake input with
+`inputs.nixpkgs.follows = "nixpkgs"`, plus `inputs.qahq.follows = ""` if it has
+a `qahq` input. Then name it in the `outputs` pattern and in `firstParty`.
+
+`just check` lints the Nix too. deadnix, statix and nixfmt run as
+`checks.lint`, so dead code, an input nothing uses or a formatting slip fails
+the gate here and in CI.
 
 ## License
 

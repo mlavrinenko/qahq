@@ -17,9 +17,13 @@ projects. It is a Nix flake, not a Rust crate — no Cargo, no `src/`.
   before `nix build`/`nix flake check`, or they are invisible.
 - Never re-vendor a tool that already ships a flake. Consume it as an input
   (with `inputs.nixpkgs.follows = "nixpkgs"`) and list it in `firstParty` (ours)
-  or `thirdParty`,
-  regardless of who authored it. Only crates.io tools with no upstream flake
-  get a vendored `pkgs/<tool>.nix`.
+  or `thirdParty`, regardless of who authored it. Only crates.io tools with no
+  upstream flake get a vendored `pkgs/<tool>.nix`.
+- A first-party input with its own `qahq` input sets `inputs.qahq.follows = ""`.
+  Without it, the lock nests a copy of qahq per tool per release.
+- Name every input in the `outputs` pattern, never `...`. `checks.lint`
+  (deadnix, statix, nixfmt) then fails on an input nothing uses. Fix what it
+  reports, never silence it.
 - Do not pin `RUSTC_WRAPPER`/sccache here. Host `kache` handles caching and
   never reaches the build sandbox.
 - Every tool must land in the `tools` set so it flows into `default`, the
@@ -28,11 +32,11 @@ projects. It is a Nix flake, not a Rust crate — no Cargo, no `src/`.
 ## Validate
 
 ```sh
-just check             # evaluates + builds every tool, the bundle, devShell
+just check             # lints the Nix, builds every tool, the bundle, devShell
 just build <tool>      # one tool (defaults to the bundle)
 just run <tool> ...    # smoke-test a binary
 just bump              # refresh the first-party tool inputs, check, commit the lock
-just bump-all          # same for every input (nixpkgs, naersk, ...)
+just bump-all          # same for every input (nixpkgs, fenix, ...)
 ```
 
 Input bumps need no tag: consumers track `main`. Tags mark changelog
