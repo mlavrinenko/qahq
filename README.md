@@ -67,8 +67,20 @@ second nixpkgs evaluation; the payoff is prebuilt binaries.
 
 ## Binary cache
 
-CI pushes every built tool to `https://qahq.cachix.org`, so consumers download
-binaries instead of compiling Rust from source.
+CI pushes every built tool to `https://qahq.cachix.org`. Trust it once, system
+wide, and you download binaries instead of compiling Rust:
+
+```nix
+nix.settings = {
+  extra-substituters = [ "https://qahq.cachix.org" ];
+  extra-trusted-public-keys = [
+    "qahq.cachix.org-1:m43yxxOk1vih9jTZmKXZXgHSSKsW/rNVZUqgXqrELM8="
+  ];
+};
+```
+
+The flake ships no `nixConfig` on purpose. Nix ignores it on an input anyway,
+and where it does apply it prints `Using saved setting` on every command.
 
 ## Maintenance
 

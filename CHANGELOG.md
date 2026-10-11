@@ -25,6 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- The `nixConfig` block. Nix ignores it on an input, and it printed
+  `Using saved setting` on every command here. The README shows the
+  `nix.settings` that trust the cache.
 - The unused `naersk` input, and the root `fenix` input. jscpd's `fenix` is
   now overridden in place.
 

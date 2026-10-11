@@ -1,15 +1,6 @@
 {
   description = "qahq — quality-assurance headquarters: shared lint/QA CLI tools, packaged once and re-exported for every consumer flake";
 
-  # Binary cache. Consumers that do NOT override qahq's nixpkgs pin pull prebuilt
-  # binaries instead of compiling cargo-crap/jscpd (and the first-party tools)
-  # from source.
-
-  nixConfig = {
-    extra-substituters = [ "https://qahq.cachix.org" ];
-    extra-trusted-public-keys = [ "qahq.cachix.org-1:m43yxxOk1vih9jTZmKXZXgHSSKsW/rNVZUqgXqrELM8=" ];
-  };
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
