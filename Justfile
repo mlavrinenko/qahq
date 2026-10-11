@@ -18,8 +18,8 @@ run TOOL *ARGS:
     nix run .#{{ TOOL }} -- {{ ARGS }}
 
 # Bump the first-party tool inputs, check, and commit flake.lock
-bump: && (_commit-lock "chore: bump tool inputs")
-    nix flake update --tarball-ttl 0 ejectest linecop outdatty mmz
+bump: && (_commit-lock "chore: bump first-party tool inputs")
+    nix flake update --tarball-ttl 0 $(just _first-party)
 
 # Bump every input (nixpkgs, naersk, ...), check, and commit flake.lock
 bump-all: && (_commit-lock "chore: bump flake inputs")
@@ -48,7 +48,7 @@ changelog BASE='':
     }
 
     hit=0
-    for tool in mmz ejectest linecop outdatty; do
+    for tool in $(just _first-party); do
       old=$(rev_at "$BASE" "$tool"); new=$(rev_at '-' "$tool")
       [ "$old" = "$new" ] && continue
       ot=$(tag_at "$tool" "$old"); nt=$(tag_at "$tool" "$new")
@@ -65,3 +65,8 @@ _commit-lock MESSAGE:
     just check
     git add flake.lock
     git diff --cached --quiet flake.lock && echo "flake.lock already up to date" || git commit -m "{{ MESSAGE }}"
+
+# First-party tool names, from the flake's `lib.firstParty`
+[private]
+_first-party:
+    nix eval --raw .#lib.firstParty --apply 'builtins.concatStringsSep " "'

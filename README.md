@@ -6,18 +6,20 @@ blocks and juggling four or five tool inputs.
 
 ## Tools
 
-| Tool | Source | Purpose |
-|---|---|---|
-| `cargo-crap` | crates.io (third-party) | CRAP change-risk metric gate |
-| `jscpd` | crates.io (third-party, Rust build) | copy/paste detector |
-| `ejectest` | `github:mlavrinenko/ejectest` | re-exported first-party |
-| `linecop` | `github:mlavrinenko/linecop` | re-exported first-party |
-| `outdatty` | `github:mlavrinenko/outdatty` | re-exported first-party |
-| `mmz` | `github:mlavrinenko/mmz` | re-exported first-party |
+| Tool | Party | Source | Purpose |
+|---|---|---|---|
+| `canibump` | first | `github:mlavrinenko/canibump` | says which upstream-blocked workarounds you can drop |
+| `ejectest` | first | `github:mlavrinenko/ejectest` | ejects inline tests into sibling files |
+| `linecop` | first | `github:mlavrinenko/linecop` | enforces line count limits |
+| `mmz` | first | `github:mlavrinenko/mmz` | memoized command runner |
+| `outdatty` | first | `github:mlavrinenko/outdatty` | catches outdated artifacts via a dependency graph and content hashes |
+| `cargo-crap` | third | crates.io, vendored in `pkgs/` | CRAP change-risk metric gate |
+| `jscpd` | third | `github:mlavrinenko/jscpd` fork of its flake | copy/paste detector |
 
-Third-party tools are vendored in `pkgs/*.nix` as portable, nixpkgs-style
-derivations (upstream-ready). First-party tools are re-exported from their own
-flakes, pinned together in this flake's lock.
+First-party tools are ours. Each comes from its own flake, and its name sits in
+`firstParty` in `flake.nix`. `just bump` and `just changelog` read that list.
+Third-party tools sit in `thirdParty`. A tool with an upstream flake comes from
+it. One without gets a portable, nixpkgs-style derivation in `pkgs/*.nix`.
 
 ## Use
 
@@ -73,9 +75,9 @@ binaries instead of compiling Rust from source.
 Add a third-party tool:
 
 1. Write `pkgs/<tool>.nix` as a `callPackage` derivation (see `cargo-crap.nix`
-   for `rustPlatform`, `jscpd.nix` for `naersk`).
-2. Wire it in `flake.nix`: `callPackage ./pkgs/<tool>.nix { }` and add it to
-   `tools`.
+   for `rustPlatform`).
+2. Wire it in `flake.nix`: `callPackage ./pkgs/<tool>.nix { }` in
+   `thirdParty`.
 3. `git add` (flake commands ignore untracked files), then `nix build .#<tool>`.
 
 Bump a version: change `version` + `hash` (and `cargoHash` for `rustPlatform`),

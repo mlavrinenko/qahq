@@ -22,6 +22,8 @@
     # one input and gets the whole stack pinned together. Each follows qahq's
     # nixpkgs so everything builds against one revision and the cache stays
     # consistent.
+
+    # Third-party.
     # v5.0.15 plus the stdenv.hostPlatform fix, until it lands upstream. A
     # current fenix, as upstream's pin uses the deprecated stdenv.isLinux.
     jscpd = {
@@ -33,6 +35,12 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # First-party: one input per name in `firstParty` below.
+    canibump = {
+      url = "github:mlavrinenko/canibump";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ejectest = {
       url = "github:mlavrinenko/ejectest";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -41,12 +49,12 @@
       url = "github:mlavrinenko/linecop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    outdatty = {
-      url = "github:mlavrinenko/outdatty";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     mmz = {
       url = "github:mlavrinenko/mmz";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    outdatty = {
+      url = "github:mlavrinenko/outdatty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -56,34 +64,35 @@
       self,
       nixpkgs,
       flake-utils,
-      naersk,
       jscpd,
-      ejectest,
-      linecop,
-      outdatty,
-      mmz,
       ...
-    }:
+    }@inputs:
+    let
+      # Our own tools, each re-exported from the flake input of the same name.
+      # `just bump` and `just changelog` read this list via `lib.firstParty`.
+      firstParty = [
+        "canibump"
+        "ejectest"
+        "linecop"
+        "mmz"
+        "outdatty"
+      ];
+    in
     flake-utils.lib.eachDefaultSystem (
       system:
       let
         pkgs = (import nixpkgs) { inherit system; };
-        naersk' = pkgs.callPackage naersk { };
 
-        # Crate with no upstream flake, vendored from crates.io.
-        cargo-crap = pkgs.callPackage ./pkgs/cargo-crap.nix { };
-
-        # Tools consumed from their own flakes. Each follows qahq's nixpkgs
-        # (see inputs) so the whole closure stays on one revision.
-        flakeTools = {
+        # Someone else's tools: vendored in pkgs/ from crates.io when there is
+        # no upstream flake, else consumed from it.
+        thirdParty = {
+          cargo-crap = pkgs.callPackage ./pkgs/cargo-crap.nix { };
           jscpd = jscpd.packages.${system}.default;
-          ejectest = ejectest.packages.${system}.default;
-          linecop = linecop.packages.${system}.default;
-          outdatty = outdatty.packages.${system}.default;
-          mmz = mmz.packages.${system}.default;
         };
 
-        tools = { inherit cargo-crap; } // flakeTools;
+        tools =
+          thirdParty
+          // nixpkgs.lib.genAttrs firstParty (name: inputs.${name}.packages.${system}.default);
       in
       {
         # Every tool individually (`nix build .#jscpd`, `nix run .#cargo-crap`)
@@ -103,6 +112,8 @@
       }
     )
     // {
+      lib = { inherit firstParty; };
+
       # `nixpkgs.overlays = [ qahq.overlays.default ]` then `pkgs.qahq.<tool>`.
       overlays.default = final: _prev: {
         qahq = self.packages.${final.stdenv.hostPlatform.system};

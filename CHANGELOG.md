@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `canibump` v0.1.0, first-party. It reads a `canibump.toml` of workarounds
+  waiting on upstream and says which ones you can drop.
+
+### Changed
+
+- `flake.nix` splits tools into `firstParty` and `thirdParty`. The first-party
+  names are exported as `lib.firstParty`, and `just bump` and
+  `just changelog` read them from there.
+
 ## [0.6.0] - 2026-10-11
 
 ### Updated
