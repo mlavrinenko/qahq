@@ -30,7 +30,7 @@ projects. It is a Nix flake, not a Rust crate — no Cargo, no `src/`.
 ```sh
 just check             # evaluates + builds every tool, the bundle, devShell
 just build <tool>      # one tool (defaults to the bundle)
-just run <tool> -- ... # smoke-test a binary
+just run <tool> ...    # smoke-test a binary
 just bump              # refresh the first-party tool inputs, check, commit the lock
 just bump-all          # same for every input (nixpkgs, naersk, ...)
 ```
