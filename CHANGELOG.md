@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2026-10-11
+
+### Updated
+
+- `mmz` v0.10.0 → v0.12.0. A rule can take a `ttl`, after which its verdict
+  expires and the command runs again. `mmz --import <dir>` copies cache records
+  in from another checkout of the same repo, such as the worktree being landed;
+  a record whose inputs differ still reads stale.
+- `outdatty` v0.5.0 → v0.7.0. `check` fails a group whose dependents glob
+  matches a file the lock holds no hash for, and a plain `check` lists only the
+  failing groups.
+- `ejectest` rev `564aac9` → v0.5.0.
+
 ### Fixed
 
 - Evaluating `jscpd` no longer warns that `stdenv.isDarwin` and
