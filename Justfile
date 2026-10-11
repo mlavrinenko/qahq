@@ -25,6 +25,12 @@ bump: && (_commit-lock "chore: bump first-party tool inputs")
 bump-all: && (_commit-lock "chore: bump flake inputs")
     nix flake update --tarball-ttl 0
 
+# Say which upstream fix in canibump.toml landed, so its workaround can go.
+# A non-zero exit is the answer (9: a workaround can go), not a failure.
+[no-exit-message]
+canibump *ARGS:
+    canibump --refresh {{ ARGS }}
+
 # Emit CHANGELOG bullets for first-party tool-input changes vs a git base (default: last release tag)
 changelog BASE='':
     #!/usr/bin/env bash

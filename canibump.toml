@@ -1,0 +1,21 @@
+#:schema https://raw.githubusercontent.com/mlavrinenko/canibump/main/schema/canibump.schema.json
+# Upstream fixes this repo's workarounds wait on. `just canibump` says which
+# can go. Add a blocker whenever a comment explains a workaround.
+
+# flake.nix pins jscpd to a fork carrying the stdenv.hostPlatform fix. A tag
+# that carries it is not enough: canibump cannot check "builds".
+[[blocker]]
+id = "jscpd-fork"
+note = "flake.nix: point jscpd back at github:kucherenko/jscpd and drop the fork, once `nix build github:kucherenko/jscpd/<tag>` succeeds"
+
+# The fix is merged...
+[[blocker.all]]
+id = "merged"
+state = "github:kucherenko/jscpd#1133"
+
+# ...and a release tag carries it.
+[[blocker.all]]
+id = "released"
+reached = "github:kucherenko/jscpd#1133"
+# `v*.*.*`, not `v*`: upstream force-pushes a moving major tag (`v5`).
+in = { tags = "v*.*.*" }

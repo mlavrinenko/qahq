@@ -2,7 +2,11 @@
 
 #show: task.with(
   title: "Track the jscpd fork with canibump",
-  status: proposed(2026, 10, 10),
+  status: done(
+    2026,
+    10,
+    11,
+  )[canibump.toml tracks it, with tags v\*.\*.\* since upstream force-pushes a moving v5 tag],
 )
 
 == Problem
