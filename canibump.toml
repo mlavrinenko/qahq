@@ -2,15 +2,15 @@
 # Upstream fixes this repo's workarounds wait on. `just canibump` says which
 # can go. Add a blocker whenever a comment explains a workaround.
 
-# flake.nix pins jscpd to a fork tag: v5.4.1 plus the three flake fixes of the
+# flake.nix pins jscpd to a fork tag: v5.4.1 plus the two flake fixes of the
 # fork's fix/nix-build branch. A tag that carries them is not enough: canibump
 # cannot check "builds".
 [[blocker]]
 id = "jscpd-fork"
 note = "flake.nix: point jscpd back at github:kucherenko/jscpd and drop the fork, once `nix build github:kucherenko/jscpd/<tag>` succeeds"
-# 4a3394e is the branch's last commit. Upstream keeps it only if the PR lands
+# 641c035 is the branch's last commit. Upstream keeps it only if the PR lands
 # as a merge commit, so wait on the PR once it is posted
 # (tasks/get-jscpds-flake-building-upstream.typ).
-reached = "github:kucherenko/jscpd@4a3394e5"
+reached = "github:kucherenko/jscpd@641c0354"
 # `v*.*.*`, not `v*`: upstream force-pushes a moving major tag (`v5`).
 in = { tags = "v*.*.*" }

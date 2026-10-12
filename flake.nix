@@ -11,7 +11,7 @@
     # consistent.
 
     # Third-party.
-    # v5.4.1 plus the fork's three flake fixes, until an upstream tag both
+    # v5.4.1 plus the fork's two flake fixes, until an upstream tag both
     # carries them and builds (canibump.toml, jscpd-fork). A current fenix,
     # as upstream's pin uses the deprecated stdenv.isLinux.
     jscpd = {
