@@ -11,11 +11,11 @@
     # consistent.
 
     # Third-party.
-    # v5.0.15 plus the stdenv.hostPlatform fix, until an upstream tag both
-    # carries it and builds (tasks/track-the-jscpd-fork-with-canibump.typ). A
-    # current fenix, as upstream's pin uses the deprecated stdenv.isLinux.
+    # v5.4.1 plus the fork's three flake fixes, until an upstream tag both
+    # carries them and builds (canibump.toml, jscpd-fork). A current fenix,
+    # as upstream's pin uses the deprecated stdenv.isLinux.
     jscpd = {
-      url = "github:mlavrinenko/jscpd/v5.0.15-nix";
+      url = "github:mlavrinenko/jscpd/v5.4.1-nix.1";
       inputs = {
         nixpkgs.follows = "nixpkgs";
         fenix = {

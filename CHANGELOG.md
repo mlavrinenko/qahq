@@ -31,6 +31,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The unused `naersk` input, and the root `fenix` input. jscpd's `fenix` is
   now overridden in place.
 
+### Updated
+
+- `jscpd` v5.0.15 → v5.4.1, from the fork tag `v5.4.1-nix.1`, since upstream's
+  flake fails to build v5.4.1. New are `--ignore-identifiers` and
+  `--ignore-literals` (renamed copies), `--similarity` (near-miss functions),
+  and `--baseline` with `--fail-on-new-clones` (gate only on new clones).
+
 ## [0.6.0] - 2026-10-11
 
 ### Updated

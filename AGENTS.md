@@ -40,8 +40,10 @@ just bump-all          # same for every input (nixpkgs, fenix, ...)
 ```
 
 Input bumps need no tag: consumers track `main`. Tags mark changelog
-releases only. `jscpd` is URL-pinned (`/v5.0.11`) — bump it by editing
-`flake.nix`, not the lock.
+releases only. `jscpd` is URL-pinned to a fork tag (`canibump.toml` says
+when the fork can go) — bump it by editing `flake.nix`, not the lock. Then
+run `nix flake update jscpd/fenix`: re-locking jscpd takes the old fenix
+from its own lock, which warns on `stdenv.isLinux`.
 
 ## Commits
 
