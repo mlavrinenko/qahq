@@ -7,6 +7,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- `outdatty` v0.8.0 → v0.9.0. A manifest takes a `root:` key, the directory
+  its paths and lock keys resolve from, and discovery also finds
+  `.config/outdatty.yaml`, so a pair kept in `.config/` with `root: ..`
+  behaves as one at the repo root.
+- `linecop` v0.7.0 → v0.8.0. A config takes a `root` key, the directory it
+  describes, and discovery finds `.config/linecop.yaml` after
+  `.linecop.yaml`, so a config kept in `.config/` with `root: ..` gives the
+  verdict of one at the top.
+- `canibump` v0.1.0 → v0.2.0. `[scan]` lists issue and PR links no blocker
+  names, and a `canibump:<id>` comment marks where a blocker's workaround
+  sits. A blocker id takes only ASCII letters, digits, `_` and `-`.
+- `mmz` v0.12.0 → v0.12.1. `mmz --import` prints one summary line instead of
+  one per record, and the hint after a failing `--is-fresh` names a rule that
+  exists.
+
 ## [0.7.0] - 2026-10-17
 
 ### Added
