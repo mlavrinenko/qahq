@@ -14,3 +14,12 @@ note = "flake.nix: point jscpd back at github:kucherenko/jscpd and drop the fork
 reached = "github:kucherenko/jscpd@641c0354"
 # `v*.*.*`, not `v*`: upstream force-pushes a moving major tag (`v5`).
 in = { tags = "v*.*.*" }
+
+# The fork's tag also carries three features Mindtape's jscpd gate reads, so
+# the fork stays until upstream ships them too: the json report's `classes`
+# (this blocker), and `--new-only` and `--merge-baseline`, which no upstream
+# issue asks for yet.
+[[blocker]]
+id = "jscpd-fork-classes"
+note = "flake.nix: the jscpd fork carries clone classes in the json report; drop the fork only once upstream does"
+state = "github:kucherenko/jscpd#1000"

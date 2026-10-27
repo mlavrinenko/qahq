@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Updated
+
+- `jscpd` v5.4.1-nix.1 → v5.4.1-nix.2, a fork tag that adds three things on
+  top of the flake fixes. The json report joins the pairs of one block into
+  `classes`, every copy listed once. `--new-only` leaves the clones a
+  baseline accepts out of the report. `--merge-baseline %O %A %B` is a git
+  merge driver for the baseline file that never conflicts.
+
 ## [0.8.0] - 2026-10-19
 
 ### Updated
