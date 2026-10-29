@@ -8,14 +8,14 @@
 }:
 rustPlatform.buildRustPackage rec {
   pname = "cargo-crap";
-  version = "0.2.2";
+  version = "0.3.1";
 
   src = fetchCrate {
     inherit pname version;
-    hash = "sha256-cZ30mdHHLXzpvMhkC6XoPMgfqAdsmdqhEfHq8T15Fmw=";
+    hash = "sha256-3qvyS5+7kQgmfk8Sl+29VJq+u+aECoh6n9A/9i0fRyY=";
   };
 
-  cargoHash = "sha256-vzkGNzQrVOtfpGLniGTdPRQfwA9jn5elXhudrFC7w9g=";
+  cargoHash = "sha256-wajI7ex7t8nOvMMBVL16LOzZJiwc0IGd6D+fYmTXXGo=";
 
   # Dev/CI tool: skip its own test suite to keep the build lean.
   doCheck = false;
