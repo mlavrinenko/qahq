@@ -7,8 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `mindtape`, the file-based task tracker. Its `mt` binary checks tasks and
+  commit messages, so a dev shell takes it beside the other gates. Its dev
+  shell's inputs stay out of this flake's lock.
+
 ### Updated
 
+- `cargo-crap` 0.2.2 → 0.3.1, the version Mindtape's CRAP gate runs.
 - `jscpd` v5.4.1-nix.1 → v5.4.1-nix.2, a fork tag that adds three things on
   top of the flake fixes. The json report joins the pairs of one block into
   `classes`, every copy listed once. `--new-only` leaves the clones a

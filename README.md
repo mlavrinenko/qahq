@@ -11,6 +11,7 @@ blocks and juggling four or five tool inputs.
 | `canibump` | first | `github:mlavrinenko/canibump` | says which upstream-blocked workarounds you can drop |
 | `ejectest` | first | `github:mlavrinenko/ejectest` | ejects inline tests into sibling files |
 | `linecop` | first | `github:mlavrinenko/linecop` | enforces line count limits |
+| `mindtape` | first | `github:mlavrinenko/mindtape` | file-based task tracker (`mt`) whose `mt check` gates tasks and commits |
 | `mmz` | first | `github:mlavrinenko/mmz` | memoized command runner |
 | `outdatty` | first | `github:mlavrinenko/outdatty` | catches outdated artifacts via a dependency graph and content hashes |
 | `cargo-crap` | third | crates.io, vendored in `pkgs/` | CRAP change-risk metric gate |

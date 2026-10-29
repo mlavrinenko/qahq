@@ -43,6 +43,12 @@
       url = "github:mlavrinenko/linecop";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Its dev shell's inputs sit in a flake-parts partition of their own, so
+    # only what builds `mt` reaches this lock.
+    mindtape = {
+      url = "github:mlavrinenko/mindtape";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     mmz = {
       url = "github:mlavrinenko/mmz";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -66,6 +72,7 @@
       canibump,
       ejectest,
       linecop,
+      mindtape,
       mmz,
       outdatty,
     }:
@@ -77,6 +84,7 @@
           canibump
           ejectest
           linecop
+          mindtape
           mmz
           outdatty
           ;
