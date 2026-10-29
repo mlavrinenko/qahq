@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `mindtape`, the file-based task tracker. Its `mt` binary checks tasks and
+- `mindtape` v0.3.1, the file-based task tracker. Its `mt` binary checks tasks and
   commit messages, so a dev shell takes it beside the other gates. Its dev
   shell's inputs stay out of this flake's lock.
 
