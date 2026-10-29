@@ -46,6 +46,9 @@ jobs:
         with:
           name: qahq
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
+          # naersk's and crane's compiled dependency trees, hundreds of MB
+          # each and useless to a consumer, who only fetches the tools.
+          pushFilter: "-deps-"
 
       - name: Flake check
         run: nix flake check --print-build-logs
