@@ -15,10 +15,13 @@
     # `--new-only` and `--merge-baseline`, until an upstream tag both carries
     # them and builds (canibump.toml, jscpd-fork). A current fenix, as
     # upstream's pin uses the deprecated stdenv.isLinux.
+    # canibump:jscpd-fork
+    # canibump:jscpd-fork-classes
     jscpd = {
       url = "github:mlavrinenko/jscpd/v5.4.1-nix.2";
       inputs = {
         nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
         fenix = {
           url = "github:nix-community/fenix";
           inputs.nixpkgs.follows = "nixpkgs";
@@ -29,19 +32,39 @@
     # First-party: one input per name in `firstParty` below. Their own qahq
     # input (dev-shell tooling) follows this flake, so the lock holds one qahq
     # instead of a nested copy per tool per release.
+    #
+    # The naersk and flake-utils follows below keep duplicate build inputs out
+    # of consumers' locks. Every tool only calls `pkgs.callPackage naersk {}`,
+    # and they all pin the same flake-utils. mindtape's naersk is the shared
+    # one for canibump, ejectest and linecop; mmz and outdatty keep their
+    # newer pins so this does not rebuild five tools for six lock nodes.
+    #
+    # canibump:nix-sparse-lock-files
     canibump = {
       url = "github:mlavrinenko/canibump";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.qahq.follows = "";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        qahq.follows = "";
+        naersk.follows = "mindtape/naersk";
+        flake-utils.follows = "flake-utils";
+      };
     };
     ejectest = {
       url = "github:mlavrinenko/ejectest";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.qahq.follows = "";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        qahq.follows = "";
+        naersk.follows = "mindtape/naersk";
+        flake-utils.follows = "flake-utils";
+      };
     };
     linecop = {
       url = "github:mlavrinenko/linecop";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        naersk.follows = "mindtape/naersk";
+        flake-utils.follows = "flake-utils";
+      };
     };
     # Its dev shell's inputs sit in a flake-parts partition of their own, so
     # only what builds `mt` reaches this lock.
@@ -51,13 +74,19 @@
     };
     mmz = {
       url = "github:mlavrinenko/mmz";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.qahq.follows = "";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        qahq.follows = "";
+        flake-utils.follows = "flake-utils";
+      };
     };
     outdatty = {
       url = "github:mlavrinenko/outdatty";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.qahq.follows = "";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        qahq.follows = "";
+        flake-utils.follows = "flake-utils";
+      };
     };
   };
 

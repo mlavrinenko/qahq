@@ -2,6 +2,12 @@
 # Upstream fixes this repo's workarounds wait on. `just canibump` says which
 # can go. Add a blocker whenever a comment explains a workaround.
 
+# The follow map is a workaround, so its site needs a marker; the same goes
+# for the jscpd fork. tasks/ carries upstream links of its own, so scan only
+# the flake.
+[scan]
+paths = ["flake.nix"]
+
 # flake.nix pins jscpd to a fork tag: v5.4.1 plus the two flake fixes of the
 # fork's fix/nix-build branch. A tag that carries them is not enough: canibump
 # cannot check "builds".
@@ -23,3 +29,13 @@ in = { tags = "v*.*.*" }
 id = "jscpd-fork-classes"
 note = "flake.nix: the jscpd fork carries clone classes in the json report; drop the fork only once upstream does"
 state = "github:kucherenko/jscpd#1000"
+
+# qahq takes each tool as a flake input, so a consumer copies every tool's
+# inputs, including ones only its dev shell uses. Nix has no dev-only inputs
+# (NixOS/nix#6124); sparse lock files (NixOS/nix#7730) would stop the copy by
+# reusing each input's own lock. The follows map in flake.nix is the temporary
+# fix for the duplicates; this blocker says when the real one lands.
+[[blocker]]
+id = "nix-sparse-lock-files"
+note = "flake.nix: drop the follows map once Nix reuses each input's own lock instead of copying its whole graph"
+state = "github:NixOS/nix#7730"

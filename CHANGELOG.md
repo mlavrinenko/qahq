@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- The first-party tool inputs share one `naersk` and `flake-utils` where
+  their pins already agree, so a consumer's copy of `flake.lock` drops from
+  54 to 33 nodes. `canibump.toml`'s `nix-sparse-lock-files` tracks the Nix
+  fix that would remove the workaround.
+
 ## [0.9.0] - 2026-10-29
 
 ### Added
