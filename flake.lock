@@ -6,7 +6,7 @@
           "flake-utils"
         ],
         "naersk": [
-          "mindtape",
+          "linecop",
           "naersk"
         ],
         "nixpkgs": [
@@ -51,7 +51,7 @@
           "flake-utils"
         ],
         "naersk": [
-          "mindtape",
+          "linecop",
           "naersk"
         ],
         "nixpkgs": [
@@ -246,10 +246,7 @@
         "flake-utils": [
           "flake-utils"
         ],
-        "naersk": [
-          "mindtape",
-          "naersk"
-        ],
+        "naersk": "naersk",
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -271,7 +268,10 @@
     "mindtape": {
       "inputs": {
         "flake-parts": "flake-parts_2",
-        "naersk": "naersk",
+        "naersk": [
+          "linecop",
+          "naersk"
+        ],
         "nixpkgs": [
           "nixpkgs"
         ]
@@ -318,11 +318,8 @@
     },
     "naersk": {
       "inputs": {
-        "fenix": [
-          "mindtape"
-        ],
+        "fenix": [],
         "nixpkgs": [
-          "mindtape",
           "nixpkgs"
         ]
       },
@@ -337,6 +334,7 @@
       "original": {
         "owner": "nix-community",
         "repo": "naersk",
+        "rev": "9d4ed44d8b8cecdceb1d6fd76e74123d90ae6339",
         "type": "github"
       }
     },

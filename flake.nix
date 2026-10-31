@@ -35,9 +35,11 @@
     #
     # The naersk and flake-utils follows below keep duplicate build inputs out
     # of consumers' locks. Every tool only calls `pkgs.callPackage naersk {}`,
-    # and they all pin the same flake-utils. mindtape's naersk is the shared
-    # one for canibump, ejectest and linecop; mmz and outdatty keep their
-    # newer pins so this does not rebuild five tools for six lock nodes.
+    # and they all pin the same flake-utils. linecop's naersk is the shared one
+    # for canibump, ejectest and mindtape; mmz and outdatty keep their newer
+    # pins so this does not rebuild five tools for six lock nodes. The anchor is
+    # linecop, not mindtape: a consumer that drops qahq's mindtape input to
+    # break the qahq cycle would also remove a follows path through it.
     #
     # canibump:nix-sparse-lock-files
     canibump = {
@@ -45,7 +47,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         qahq.follows = "";
-        naersk.follows = "mindtape/naersk";
+        naersk.follows = "linecop/naersk";
         flake-utils.follows = "flake-utils";
       };
     };
@@ -54,7 +56,7 @@
       inputs = {
         nixpkgs.follows = "nixpkgs";
         qahq.follows = "";
-        naersk.follows = "mindtape/naersk";
+        naersk.follows = "linecop/naersk";
         flake-utils.follows = "flake-utils";
       };
     };
@@ -62,7 +64,15 @@
       url = "github:mlavrinenko/linecop";
       inputs = {
         nixpkgs.follows = "nixpkgs";
-        naersk.follows = "mindtape/naersk";
+        # Pinned to the naersk rev the tools already used, and fenix dropped,
+        # so sharing it changes no build. It cannot be mindtape's naersk: a
+        # consumer that drops qahq's mindtape input to cut the qahq cycle would
+        # remove the follows path. Unpin when the tools share a newer naersk.
+        naersk = {
+          url = "github:nix-community/naersk/9d4ed44d8b8cecdceb1d6fd76e74123d90ae6339";
+          inputs.nixpkgs.follows = "nixpkgs";
+          inputs.fenix.follows = "";
+        };
         flake-utils.follows = "flake-utils";
       };
     };
@@ -70,7 +80,10 @@
     # only what builds `mt` reaches this lock.
     mindtape = {
       url = "github:mlavrinenko/mindtape";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        naersk.follows = "linecop/naersk";
+      };
     };
     mmz = {
       url = "github:mlavrinenko/mmz";
