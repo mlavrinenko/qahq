@@ -277,11 +277,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793304445,
-        "narHash": "sha256-ctXfxBg//yBkZm3CRzCJCkqoH3oC1PTTEAWLJtHZ1y8=",
+        "lastModified": 1793453037,
+        "narHash": "sha256-JN2ZMDcqs67r6k9jBzRv94+wGIaFRqZkbBTFBvOpGIA=",
         "owner": "mlavrinenko",
         "repo": "mindtape",
-        "rev": "479dac9093696f463f322be7f46bccf987478137",
+        "rev": "ad9db57556d5ff32e9d18eb55335e590e28cc774",
         "type": "github"
       },
       "original": {
