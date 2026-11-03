@@ -14,6 +14,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   54 to 33 nodes. `canibump.toml`'s `nix-sparse-lock-files` tracks the Nix
   fix that would remove the workaround.
 
+### Updated
+
+- `mindtape` v0.3.1 → v0.4.0. Its release embeds `@local/mindtape:0.3.0`,
+  so the task files' imports move from `0.2.0` to `0.3.0` with it.
+
 ## [0.9.0] - 2026-10-29
 
 ### Added
