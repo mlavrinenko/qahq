@@ -16,8 +16,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Updated
 
-- `mindtape` v0.3.1 → v0.4.0. Its release embeds `@local/mindtape:0.3.0`,
-  so the task files' imports move from `0.2.0` to `0.3.0` with it.
+- `canibump` 087275b0d → 023888b4d.
+- `ejectest` v0.5.0 → 0751574e4.
+- `linecop` v0.8.0 → v0.8.1.
+- `mindtape` v0.3.1 → v0.5.0. Its release embeds `@local/mindtape:0.4.0`,
+  so the task files' imports move from `0.3.0` to `0.4.0` with it.
+- `mmz` v0.12.1 → 1cb9d66ec.
+- `outdatty` v0.9.0 → 0d54ea93b.
 
 ## [0.9.0] - 2026-10-29
 
