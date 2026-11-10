@@ -17,11 +17,11 @@
         "tola": "tola"
       },
       "locked": {
-        "lastModified": 1791925138,
-        "narHash": "sha256-h3nIki7BQ6GdpWWnVb9Kq2tkJg3SCrviE5iYk1N2fo0=",
+        "lastModified": 1793453139,
+        "narHash": "sha256-mhfQsgWMfC+01ui38zLBGSVs50e6EXGJXjdtX3vOgFo=",
         "owner": "mlavrinenko",
         "repo": "canibump",
-        "rev": "087275b0da1156606ac365626bd4fafd6ee6ef1c",
+        "rev": "023888b4dcfea679a6e7a4245305ffa52afdc3f6",
         "type": "github"
       },
       "original": {
@@ -60,11 +60,11 @@
         "qahq": []
       },
       "locked": {
-        "lastModified": 1791373234,
-        "narHash": "sha256-Qs+39F9L1S7tib/jR3IZrPBe+dyUeb1Ip+Wa72JtnrM=",
+        "lastModified": 1793453093,
+        "narHash": "sha256-5K2nMzNF+eH1I5YbrUkBPUkQq9GL88gejI8kOZNbzss=",
         "owner": "mlavrinenko",
         "repo": "ejectest",
-        "rev": "86e68f75a19af0623e0ab89d7b9af7fa3ef27584",
+        "rev": "0751574e4083cd6cd4850458956b263e79ec8d86",
         "type": "github"
       },
       "original": {
@@ -252,11 +252,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1792369917,
-        "narHash": "sha256-yvvcuXdfvy8UlLIob3ATOzK0HW6uFgr/HiL0uwdnsY4=",
+        "lastModified": 1793137774,
+        "narHash": "sha256-DGK992LPpi0JJJqmzBdKdGw9jN9CRcL6WLNkEWe4bns=",
         "owner": "mlavrinenko",
         "repo": "linecop",
-        "rev": "3dd5b743af4e8ee74288f0a5b1cda46b4d2f0ff8",
+        "rev": "0e3a45c7b7a253b3cbad03a8a74a73b068401320",
         "type": "github"
       },
       "original": {
@@ -277,11 +277,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793661001,
-        "narHash": "sha256-piy3QJeZYoR8sUarx49rSSh21wxamrzF3R95VNQvU6M=",
+        "lastModified": 1794169702,
+        "narHash": "sha256-fw4DxEpU/v3+gd5WPicQkKIH4w/yRWVvYgcSKwpSpiM=",
         "owner": "mlavrinenko",
         "repo": "mindtape",
-        "rev": "49bb9230ad6c65324b475c14769e24a0d1930413",
+        "rev": "7b58d417cdfab79970a8ae193968218a8e6217ee",
         "type": "github"
       },
       "original": {
@@ -303,11 +303,11 @@
         "tola": "tola_2"
       },
       "locked": {
-        "lastModified": 1792095802,
-        "narHash": "sha256-xN0p9AFxO5Ud1RiIXkcqS24mGUE/R2fHMtuTDGTjvJo=",
+        "lastModified": 1794167770,
+        "narHash": "sha256-7S7Cmao3mTKoZUSUnTRQCVoXPli/i5XTw4KFq+mAp0A=",
         "owner": "mlavrinenko",
         "repo": "mmz",
-        "rev": "364fe5dbe5e9706c1ddff131176e5af04e411b44",
+        "rev": "1cb9d66eca77686c2736371513f3fcc8d6ee066f",
         "type": "github"
       },
       "original": {
@@ -488,11 +488,11 @@
         "qahq": []
       },
       "locked": {
-        "lastModified": 1792369734,
-        "narHash": "sha256-uzXeVkBWne6g4TNm8aAvmQOvAzhkbqj2WATGmQFLpz0=",
+        "lastModified": 1793453093,
+        "narHash": "sha256-njFi+/p+StbzpkOMw4/TxSKXKZII4lG3Yaz0SU44ogU=",
         "owner": "mlavrinenko",
         "repo": "outdatty",
-        "rev": "9b211f9c305d5635a6a9527f48b0529f3eac93f6",
+        "rev": "0d54ea93bf3f0bd7f1424c232c749620e3638962",
         "type": "github"
       },
       "original": {
